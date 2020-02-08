@@ -160,3 +160,39 @@ df %>% group_by(cyl,gear) %>% summarise(meanwt =mean(wt,na.rm=T),meanMPG = mean(
 df %>% filter(mpg>25)
 
 (df %>% filter(mpg>25) & gear %in% c(4))
+
+df
+
+#scatter
+#barplot
+#heatmap
+#pyplot
+
+# x, y , shape , colour , size
+
+#ggplots
+
+ggplot(df,aes(x=wt,y=mpg)) + geom_point()
+
+ggplot(df,aes(x=wt,y=mpg)) + geom_point(aes(color=am))
+?mtcars
+ggplot(df,aes(x=wt,y=mpg)) + geom_point(aes(color=am,size=hp))
+
+ggplot(df,aes(x=wt,y=mpg)) + geom_point(aes(color=am,size=hp,shape=carb))
+
+df %>% group_by(cyl,gear) %>% summarise(CNT =n())
+
+ggplot(df %>% group_by(cyl,gear) %>% summarise(CNT =n()),aes(x=cyl,y=CNT,fill=gear)) + geom_bar(stat='identity')
+
+ggplot(df %>% group_by(cyl,gear) %>% summarise(CNT =n()),aes(x=cyl,y=CNT,fill=gear)) + geom_bar(stat='identity',position_dodge2(.7))       
+              
+ggplot(df,aes(df %>% group_by(cyl,gear) %>% summarise(CNT =n()),aes(x=cyl,y=CNT,fill=gear)) + geom_bar(stat='identity',position_dodge2(.7)))      
+       
+       
+ggplot(df,aes(x='',y=mpg)) + geom_boxplot()
+
+ggplot(df,aes(x='gear',y=mpg,fill=gear)) + geom_boxplot()
+
+ggplot(df,aes(x='gear',y=mpg,fill=gear)) + geom_boxplot() + facet_grid((~ cyl))       
+
+ggplot(df,aes(x='gear',y=mpg,fill=gear)) + geom_boxplot() + facet_grid((am ~ cyl))  
