@@ -1,3 +1,8 @@
+library(TTR)
+library(smooth)
+library(forecast)
+
+
 AirPassengers
 ?AirPassengers
 JohnsonJohnson
@@ -55,3 +60,36 @@ daily<- ts(data = sample(100:150),start = c(2019,1,1),end = c(2020,3,31) , frequ
 plot(daily)
 cycle(daily)
 monthplot(daily)
+
+window(tsdata , start = c(2019,2) , end = c(2019,5))
+
+
+
+
+AirPassengers
+s1 <- window(AirPassengers, start = c(1952,5) , end = c(1957 , 9) ) #may 1952 to sep 1957
+s1
+monthplot(s1)
+
+
+# smoothening 
+sma.5=TTR::SMA(AirPassengers, n=3)
+plot(sma.5)
+dar<- decompose(AirPassengers)
+dar$trend
+plot(dar$trend)
+x = c(1,2,3,4,5)
+(1+2+3)/3 ; (2+3+4)/3
+mean(AirPassengers[1:3])
+?SMA
+
+
+smooth::SMA(AirPassengers, n=3)
+
+
+#seasonal decomposition of time series
+stl(AirPassengers, s.window = 'periodic') 
+
+
+#seasonal adjustment
+
